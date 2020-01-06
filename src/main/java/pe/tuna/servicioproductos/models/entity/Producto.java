@@ -19,6 +19,10 @@ public class Producto implements Serializable {
     @Column(name = "create_at")
     private Date createAt;
 
+    // indicamos que este atributo no es persistente, es decir que no esta ligado a una columna en la BD
+    @Transient
+    private Integer port;
+
     private static final long serialVersionUID = 189427942456642927L;
 
     public long getId() {
@@ -51,5 +55,13 @@ public class Producto implements Serializable {
 
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
+    }
+
+    public Integer getPort() {
+        return port;
+    }
+
+    public void setPort(Integer port) {
+        this.port = port;
     }
 }
