@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pe.tuna.servicioproductos.models.entity.Producto;
 import pe.tuna.servicioproductos.models.services.IProductoService;
@@ -37,10 +36,22 @@ public class ProductoController {
     }
 
     @GetMapping("/listar/{id}")
-    public Producto detalle(@PathVariable long id) {
+    public Producto detalle(@PathVariable long id) throws Exception {
         Producto producto = productoService.findById(id);
         //producto.setPort(Integer.parseInt(env.getProperty("local.server.port")));
         producto.setPort(port);
+
+        /*
+        Simulamos un error para que se vea el efecto de hystrix en nuestra configuracion
+        boolean ok = false;
+        if (ok == false) {
+            throw new Exception("No se puede cargar el producto");
+        }
+        */
+
+        // Ahora simulamos un tiempo de espera mayor para que tambien sea detectado por hystrix
+        //Thread.sleep(2000L);
+
         return producto;
     }
 
