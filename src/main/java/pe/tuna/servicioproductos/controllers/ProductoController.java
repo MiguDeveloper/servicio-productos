@@ -3,9 +3,8 @@ package pe.tuna.servicioproductos.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import pe.tuna.servicioproductos.models.entity.Producto;
 import pe.tuna.servicioproductos.models.services.IProductoService;
 
@@ -55,4 +54,26 @@ public class ProductoController {
         return producto;
     }
 
+    @PostMapping("/crear")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Producto crear(@RequestBody Producto producto) {
+        return productoService.save(producto);
+    }
+
+    @PutMapping("/editar/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Producto editar(@PathVariable(name = "id") Long id, @RequestBody Producto producto) {
+        Producto productoCurrent = productoService.findById(id);
+
+        productoCurrent.setNombre(producto.getNombre());
+        productoCurrent.setPrecio(producto.getPrecio());
+
+        return productoService.save(productoCurrent);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable Long id){
+        productoService.deleteById(id);
+    }
 }
