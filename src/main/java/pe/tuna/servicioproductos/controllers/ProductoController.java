@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import pe.tuna.servicioproductos.models.entity.Producto;
+import pe.tuna.serviciocommons.models.entity.Producto;
 import pe.tuna.servicioproductos.models.services.IProductoService;
 
 import java.util.List;

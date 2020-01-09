@@ -3,7 +3,7 @@ package pe.tuna.servicioproductos.models.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pe.tuna.servicioproductos.models.entity.Producto;
+import pe.tuna.serviciocommons.models.entity.Producto;
 import pe.tuna.servicioproductos.models.repository.IProductoRepository;
 
 import java.util.List;
